@@ -21,7 +21,7 @@ RUN \
     \
     && mkdir /opt \
     && curl -L -s \
-        "https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.9-hotfix1/AdGuardHome_v0.9-hotfix1_linux_${ARCH}.tar.gz" \
+        "https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.92/AdGuardHome_v0.92_linux_${ARCH}.tar.gz" \
         | tar zxvf - -C /opt/ \
     && chmod a+x /opt/AdGuardHome/AdGuardHome
 
