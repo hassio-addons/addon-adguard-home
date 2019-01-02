@@ -8,7 +8,6 @@
 ![Project Maintenance][maintenance-shield]
 [![GitHub Activity][commits-shield]][commits]
 
-[![Bountysource][bountysource-shield]][bountysource]
 [![Discord][discord-shield]][discord]
 [![Community Forum][forum-shield]][forum]
 
@@ -195,8 +194,6 @@ SOFTWARE.
 [anchore-shield]: https://anchore.io/service/badges/image/67d1185473090e99d5ac5e1bb4d1aa2295117a9bd3d7abbf8cd8a71e331c8388
 [anchore]: https://anchore.io/image/dockerhub/hassioaddons%adguard%3Alatest
 [armhf-shield]: https://img.shields.io/badge/armhf-yes-green.svg
-[bountysource-shield]: https://img.shields.io/bountysource/team/hassio-addons/activity.svg
-[bountysource]: https://www.bountysource.com/teams/hassio-addons/issues
 [buymeacoffee-shield]: https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-2.svg
 [buymeacoffee]: https://www.buymeacoffee.com/frenck
 [commits-shield]: https://img.shields.io/github/commit-activity/y/hassio-addons/addon-adguard-home.svg
