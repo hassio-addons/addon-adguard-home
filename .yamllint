@@ -33,6 +33,8 @@ rules:
   document-start:
     level: error
     present: true
+    ignore: |
+      adguard/rootfs/etc/adguard/AdGuardHome.yaml
   empty-lines:
     level: error
     max: 1
