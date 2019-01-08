@@ -3,8 +3,8 @@
   "version": "dev",
   "slug": "adguard",
   "description": "Network-wide ads & trackers blocking DNS server.",
-  "url": "https://community.home-assistant.io/?u=frenck",
-  "webui": "[PROTO:ssl]://[HOST]:[PORT:3000]",
+  "url": "https://github.com/hassio-addons/addon-adguard-home",
+  "webui": "[PROTO:ssl]://[HOST]:[PORT:3210]",
   "startup": "services",
   "arch": [
     "aarch64",
@@ -17,22 +17,22 @@
   "hassio_role": "default",
   "auth_api": true,
   "homeassistant_api": false,
-  "host_network": false,
+  "host_network": true,
   "map": [
     "ssl"
   ],
-  "ports": {
-    "53/udp": 53,
-    "3000/tcp": 3000
-  },
   "options": {
     "log_level": "info",
+    "dns_port": 53,
+    "admin_port": 3210,
     "ssl": true,
     "certfile": "fullchain.pem",
     "keyfile": "privkey.pem"
   },
   "schema": {
     "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)",
+    "dns_port": "port",
+    "admin_port": "port",
     "ssl": "bool",
     "certfile": "str",
     "keyfile": "str",

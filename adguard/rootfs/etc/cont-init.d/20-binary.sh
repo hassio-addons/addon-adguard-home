@@ -1,16 +1,9 @@
 #!/usr/bin/with-contenv bash
 # ==============================================================================
 # Community Hass.io Add-ons: AdGuard Home
-# Runs the AdGuard Homee server
+# Place executable into the data folder on startup.
 # ==============================================================================
 # shellcheck disable=SC1091
 source /usr/lib/hassio-addons/base.sh
 
-declare -a options
-
-options+=(--port 37043)
-options+=(--host 127.0.0.1)
-
-# RUN AdGuard Home server
-cd /data || exit
-exec ./AdGuardHome "${options[@]}"
+cp -f /opt/AdGuardHome/AdGuardHome /data/AdGuardHome
