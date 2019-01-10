@@ -26,7 +26,7 @@ parental control (adult content blocking) capabilities. Its purpose is to let
 you control your entire network and all your devices, and it does not require
 using a client-side program.
 
-AdGuard Home provides a beautiful, easy and feature richt web interface to
+AdGuard Home provides a beautiful, easy and feature-rich web interface to
 easily manage the filtering process and its settings.
 
 ## Installation
@@ -233,7 +233,7 @@ SOFTWARE.
 [discord]: https://discord.me/hassioaddons
 [dockerhub]: https://hub.docker.com/r/hassioaddons/adguard
 [forum-shield]: https://img.shields.io/badge/community-forum-brightgreen.svg
-[forum]: https://community.home-assistant.io/?u=frenck
+[forum]: https://community.home-assistant.io/t/community-hass-io-add-on-adguard-home/90684?u=frenck
 [frenck]: https://github.com/frenck
 [gitlabci-shield]: https://gitlab.com/hassio-addons/addon-adguard-home/badges/master/pipeline.svg
 [gitlabci]: https://gitlab.com/hassio-addons/addon-adguard-home/pipelines
