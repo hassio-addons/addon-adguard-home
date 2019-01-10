@@ -6,4 +6,12 @@
 # shellcheck disable=SC1091
 source /usr/lib/hassio-addons/base.sh
 
+# Wait for adguard to become available
+s6-svwait -u -t 5000 /var/run/s6/services/adguard
+
+# Disable HA Authentication if front door is open
+if hass.config.true 'leave_front_door_open'; then
+    export DISABLE_HA_AUTHENTICATION=true
+fi
+
 exec nginx -g "daemon off;"
