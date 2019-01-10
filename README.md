@@ -21,13 +21,20 @@ Network-wide ads & trackers blocking DNS server.
 
 ## About
 
-Lorem ipsum.
+AdGuard Home is a network-wide ad-and-tracker blocking DNS server with
+parental control (adult content blocking) capabilities. Its purpose is to let
+you control your entire network and all your devices, and it does not require
+using a client-side program.
+
+AdGuard Home provides a beautiful, easy and feature richt web interface to
+easily manage the filtering process and its settings.
 
 ## Installation
 
 The installation of this add-on is pretty straightforward and not different in
 comparison to installing any other Hass.io add-on.
 
+1. **Ensure your Hass.io device has a static IP and static external DNS servers!**
 1. [Add our Hass.io add-ons repository][repository] to your Hass.io instance.
 1. Install the "AdGuard Home" add-on.
 1. Start the "AdGuard Home" add-on.
@@ -57,6 +64,8 @@ Example add-on configuration:
 ```json
 {
   "log_level": "info",
+  "dns_port": 53,
+  "admin_port": 3210,
   "ssl": true,
   "certfile": "fullchain.pem",
   "keyfile": "privkey.pem"
@@ -83,6 +92,15 @@ more severe level, e.g., `debug` also shows `info` messages. By default,
 the `log_level` is set to `info`, which is the recommended setting unless
 you are troubleshooting.
 
+### Option: `dns_port`
+
+Allows you to change the DNS port. `53` is the default port for DNS. Unless you
+have a good reason to change it, leave it to `53`.
+
+### Option: `admin_port`
+
+Changes the port on which the AdGuard Home web interface will be served from.
+
 ### Option: `ssl`
 
 Enables/Disables SSL (HTTPS) on the add-on. Set it `true` to enable it,
@@ -108,9 +126,22 @@ authentication on the AdGuard Home by setting it to `true`.
 **Note**: _We STRONGLY suggest, not to use this, even if this add-on is
 only exposed to your internal network. USE AT YOUR OWN RISK!_
 
-## Known issues and limitations
+## Embedding into Home Assistant
 
-- Lorem ipsum.
+It is possible to embed the AdGuard Home admin directly into Home Assistant,
+allowing you to access your Pi-hole admin through the Home Assistant frontend.
+
+Home Assistant provides the `panel_iframe` component, for these purposes.
+
+Example configuration:
+
+```yaml
+panel_iframe:
+  adguard:
+    title: AdGuard Home
+    icon: mdi:block-helper
+    url: http://addres.to.your.hass.io:3210
+```
 
 ## Changelog & Releases
 
