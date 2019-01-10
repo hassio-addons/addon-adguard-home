@@ -129,7 +129,7 @@ only exposed to your internal network. USE AT YOUR OWN RISK!_
 ## Embedding into Home Assistant
 
 It is possible to embed the AdGuard Home admin directly into Home Assistant,
-allowing you to access your Pi-hole admin through the Home Assistant frontend.
+allowing you to access the admin through the Home Assistant frontend.
 
 Home Assistant provides the `panel_iframe` component, for these purposes.
 
