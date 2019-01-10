@@ -10,7 +10,8 @@ declare -a options
 
 options+=(--port 37043)
 options+=(--host 127.0.0.1)
+options+=(--config data/AdGuardHome.yaml)
 
 # RUN AdGuard Home server
-cd /data || exit
+cd /opt/AdGuardHome || exit
 exec ./AdGuardHome "${options[@]}"
