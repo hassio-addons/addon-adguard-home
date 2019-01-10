@@ -25,7 +25,7 @@
     "log_level": "info",
     "dns_port": 53,
     "admin_port": 3210,
-    "ssl": true,
+    "ssl": false,
     "certfile": "fullchain.pem",
     "keyfile": "privkey.pem"
   },
