@@ -40,6 +40,7 @@ comparison to installing any other Hass.io add-on.
 1. Start the "AdGuard Home" add-on.
 1. Check the logs of the "AdGuard Home" to see if everything went well.
 1. Click the "OPEN WEB UI" button and log in with your Home Assistant account.
+1. Set your router or devices DNS server to you HASSIO's IP.
 1. Ready to go!
 
 **NOTE**: Do not add this repository to Hass.io, please use:
