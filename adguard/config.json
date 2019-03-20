@@ -22,7 +22,6 @@
     "ssl"
   ],
   "options": {
-    "log_level": "info",
     "dns_port": 53,
     "admin_port": 3210,
     "ssl": false,
@@ -30,7 +29,7 @@
     "keyfile": "privkey.pem"
   },
   "schema": {
-    "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)",
+    "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)?",
     "dns_port": "port",
     "admin_port": "port",
     "ssl": "bool",
