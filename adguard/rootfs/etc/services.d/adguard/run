@@ -11,6 +11,10 @@ options+=(--port 37043)
 options+=(--host 127.0.0.1)
 options+=(--config data/AdGuardHome.yaml)
 
+if bashio::debug; then
+    option+=(--verbose)
+fi
+
 # RUN AdGuard Home server
 cd /opt/AdGuardHome || exit
 exec ./AdGuardHome "${options[@]}"
