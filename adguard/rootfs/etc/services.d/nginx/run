@@ -3,12 +3,9 @@
 # Community Hass.io Add-ons: AdGuard Home
 # Runs the Nginx daemon
 # ==============================================================================
+
 # Wait for adguard to become available
-s6-svwait -u -t 5000 /var/run/s6/services/adguard
-timeout -t 15 \
-    bash -c \
-        'until echo > /dev/tcp/localhost/37043; do sleep 0.5; done' \
-            > /dev/null 2>&1
+bashio::net.wait_for 45158
 
 bashio::log.info "Starting NGinx..."
 
