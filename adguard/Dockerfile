@@ -23,7 +23,10 @@ RUN \
     && curl -L -s \
         "https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.94/AdGuardHome_v0.94_linux_${ARCH}.tar.gz" \
         | tar zxvf - -C /opt/ \
-    && chmod a+x /opt/AdGuardHome/AdGuardHome
+    && chmod a+x /opt/AdGuardHome/AdGuardHome \
+    \
+    && rm -fr \
+        /etc/nginx
 
  # Copy root filesystem
 COPY rootfs /

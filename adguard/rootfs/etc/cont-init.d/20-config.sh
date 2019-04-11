@@ -11,8 +11,7 @@ if ! bashio::fs.file_exists "${CONFIG}"; then
     cp /etc/adguard/AdGuardHome.yaml "${CONFIG}"
 fi
 
-port=$(bashio::config "dns_port")
-
+port=$(bashio::addon.port "53/udp")
 yq write --inplace "${CONFIG}" \
     'dns.port' "${port}" \
     || hass.die 'Failed updating AdGuardHome DNS port'

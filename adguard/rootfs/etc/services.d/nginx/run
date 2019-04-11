@@ -14,4 +14,4 @@ if bashio::config.true 'leave_front_door_open'; then
     export DISABLE_HA_AUTHENTICATION=true
 fi
 
-exec nginx -g "daemon off;"
+exec nginx

@@ -7,7 +7,7 @@ declare -a options
 
 bashio::log.info "Starting AdGuard Home server..."
 
-options+=(--port 37043)
+options+=(--port 45158)
 options+=(--host 127.0.0.1)
 options+=(--config data/AdGuardHome.yaml)
 

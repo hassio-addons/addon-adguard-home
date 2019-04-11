@@ -60,8 +60,6 @@ Example add-on configuration:
 ```json
 {
   "log_level": "info",
-  "dns_port": 53,
-  "admin_port": 3210,
   "ssl": true,
   "certfile": "fullchain.pem",
   "keyfile": "privkey.pem"
@@ -88,19 +86,13 @@ more severe level, e.g., `debug` also shows `info` messages. By default,
 the `log_level` is set to `info`, which is the recommended setting unless
 you are troubleshooting.
 
-### Option: `dns_port`
-
-Allows you to change the DNS port. `53` is the default port for DNS. Unless you
-have a good reason to change it, leave it to `53`.
-
-### Option: `admin_port`
-
-Changes the port on which the AdGuard Home web interface will be served from.
-
 ### Option: `ssl`
 
 Enables/Disables SSL (HTTPS) on the add-on. Set it `true` to enable it,
 `false` otherwise.
+
+**Note**: _The SSL settings only apply to direct access and have not effect
+on the Hassio Ingress service._
 
 ### Option: `certfile`
 
@@ -121,23 +113,6 @@ authentication on the AdGuard Home by setting it to `true`.
 
 **Note**: _We STRONGLY suggest, not to use this, even if this add-on is
 only exposed to your internal network. USE AT YOUR OWN RISK!_
-
-## Embedding into Home Assistant
-
-It is possible to embed the AdGuard Home admin directly into Home Assistant,
-allowing you to access the admin through the Home Assistant frontend.
-
-Home Assistant provides the `panel_iframe` component, for these purposes.
-
-Example configuration:
-
-```yaml
-panel_iframe:
-  adguard:
-    title: AdGuard Home
-    icon: mdi:block-helper
-    url: http://addres.to.your.hass.io:3210
-```
 
 ## Changelog & Releases
 
