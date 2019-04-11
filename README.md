@@ -91,8 +91,8 @@ you are troubleshooting.
 Enables/Disables SSL (HTTPS) on the add-on. Set it `true` to enable it,
 `false` otherwise.
 
-**Note**: _The SSL settings only apply to direct access and have not effect
-on the Hassio Ingress service._
+**Note**: _The SSL settings only apply to direct access and has no effect
+on the Hass.io Ingress service._
 
 ### Option: `certfile`
 
