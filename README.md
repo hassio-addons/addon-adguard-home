@@ -114,6 +114,28 @@ authentication on the AdGuard Home by setting it to `true`.
 **Note**: _We STRONGLY suggest, not to use this, even if this add-on is
 only exposed to your internal network. USE AT YOUR OWN RISK!_
 
+## Embedding into Home Assistant
+
+It is possible to embed the Adguard interface directly into Home Assistant,
+allowing you to access it through the Home Assistant frontend.
+
+Home Assistant provides the `panel_custom` component, for these purposes. With Home Assistant cloud you will be able to access the add-on remotely.
+
+Example configuration:
+
+```yaml
+panel_custom:
+  name: hassio-main
+  sidebar_title: Adguard
+  sidebar_icon: hass:settings
+  js_url: /api/hassio/app/entrypoint.js
+  url_path: a0d7b954_adguard
+  embed_iframe: true
+  require_admin: true
+  config:
+    ingress: a0d7b954_adguard
+```
+
 ## Changelog & Releases
 
 This repository keeps a change log using [GitHub's releases][releases]
