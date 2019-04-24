@@ -21,7 +21,7 @@ RUN \
     && if [[ "${BUILD_ARCH}" = "i386" ]]; then ARCH="386"; fi \
     \
     && curl -L -s \
-        "https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.94/AdGuardHome_v0.94_linux_${ARCH}.tar.gz" \
+        "https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.95/AdGuardHome_v0.95_linux_${ARCH}.tar.gz" \
         | tar zxvf - -C /opt/ \
     && chmod a+x /opt/AdGuardHome/AdGuardHome \
     \
