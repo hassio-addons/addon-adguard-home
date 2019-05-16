@@ -103,7 +103,7 @@ you are troubleshooting.
 ### Option: `hosts`
 
 This option allows you to create client friendly names in the interface of
-AdGuard Home. It is much more useful to see "Desktop PC" compared to just
+AdGuard Home. It is much more useful to see "Desktop-PC" compared to just
 the `192.168.5.34` IP-address from the AdGuard Home Admin panel.
 
 See the example above this chapter for a more visual representation.
