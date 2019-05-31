@@ -6,7 +6,6 @@
 declare admin_port
 declare certfile
 declare ingress_interface
-declare ingress_port
 declare keyfile
 
 admin_port=$(bashio::addon.port 80)
