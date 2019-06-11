@@ -40,7 +40,7 @@ easily manage the filtering process and its settings.
 The installation of this add-on is pretty straightforward and not different in
 comparison to installing any other Hass.io add-on.
 
-1. **Ensure your Hass.io device has a static IP and static external DNS servers!**
+1. **Ensure your Hass.io device has a [static IP and static external DNS servers!](https://github.com/home-assistant/hassos/blob/dev/Documentation/network.md#static-ip)**
 1. [Add our Hass.io add-ons repository][repository] to your Hass.io instance.
 1. Install the "AdGuard Home" add-on.
 1. Start the "AdGuard Home" add-on.
