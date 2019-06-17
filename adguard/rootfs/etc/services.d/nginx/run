@@ -5,7 +5,7 @@
 # ==============================================================================
 
 # Wait for adguard to become available
-bashio::net.wait_for 45158
+bashio::net.wait_for 45158 localhost 900
 
 bashio::log.info "Starting NGinx..."
 
