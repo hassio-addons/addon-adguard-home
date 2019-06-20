@@ -8,8 +8,8 @@ declare payload
 
 config=$(\
     bashio::var.json \
-        host "$(bashio::addon.ip_address)" \
-        port "^$(bashio::addon.ingress_port)" \
+        host "127.0.0.1" \
+        port "^45158" \
 )
 
 payload=$(\
