@@ -11,8 +11,8 @@ ARG BUILD_ARCH=amd64
 RUN \
     apk add --no-cache \
         lua-resty-http=0.13-r0 \
-        nginx-mod-http-lua=1.14.2-r1 \
-        nginx=1.14.2-r1 \
+        nginx-mod-http-lua=1.16.0-r2 \
+        nginx=1.16.0-r2 \
     \
     && if [[ "${BUILD_ARCH}" = "aarch64" ]]; then ARCH="arm64"; fi \
     && if [[ "${BUILD_ARCH}" = "amd64" ]]; then ARCH="amd64"; fi \
