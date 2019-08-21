@@ -60,20 +60,6 @@ Example add-on configuration:
 ```json
 {
   "log_level": "info",
-  "hosts": [
-    {
-      "name": "Desktop",
-      "ip": "192.168.1.5"
-    },
-    {
-      "name": "Router",
-      "ip": "192.168.1.1"
-    },
-    {
-      "name": "Mom",
-      "ip": "192.168.1.47"
-    }
-  ],
   "ssl": true,
   "certfile": "fullchain.pem",
   "keyfile": "privkey.pem"
@@ -99,14 +85,6 @@ Please note that each level automatically includes log messages from a
 more severe level, e.g., `debug` also shows `info` messages. By default,
 the `log_level` is set to `info`, which is the recommended setting unless
 you are troubleshooting.
-
-### Option: `hosts`
-
-This option allows you to create client friendly names in the interface of
-AdGuard Home. It is much more useful to see "Desktop-PC" compared to just
-the `192.168.5.34` IP-address from the AdGuard Home Admin panel.
-
-See the example above this chapter for a more visual representation.
 
 ### Option: `ssl`
 
