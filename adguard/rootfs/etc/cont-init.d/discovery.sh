@@ -4,7 +4,6 @@
 # Sends discovery information to Home Assistant.
 # ==============================================================================
 declare config
-declare payload
 
 config=$(\
     bashio::var.json \
@@ -12,13 +11,7 @@ config=$(\
         port "^45158" \
 )
 
-payload=$(\
-    bashio::var.json \
-        service adguard \
-        config "^${config}" \
-)
-
-if bashio::api.hassio "POST" "/discovery" "${payload}"; then
+if bashio::discovery "adguard" "${config}" > /dev/null; then
     bashio::log.info "Successfully send discovery information to Home Assistant."
 else
     bashio::log.error "Discovery message to Home Assistant failed!"
