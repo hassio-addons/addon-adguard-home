@@ -1,12 +1,15 @@
-ARG BUILD_FROM=hassioaddons/base:4.1.1
+ARG BUILD_FROM=hassioaddons/base:5.0.1
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
+
+# Copy yq
+ARG BUILD_ARCH=amd64
+COPY bin/yq_${BUILD_ARCH} /usr/bin/yq
 
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Setup base
-ARG BUILD_ARCH=amd64
 # hadolint ignore=DL3003
 RUN \
     apk add --no-cache \
