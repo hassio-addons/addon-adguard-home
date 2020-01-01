@@ -13,7 +13,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # hadolint ignore=DL3003
 RUN \
     apk add --no-cache \
-        lua-resty-http=0.13-r0 \
+        lua-resty-http=0.15-r0 \
         nginx-mod-http-lua=1.16.1-r4 \
         nginx=1.16.1-r4 \
     \
