@@ -41,15 +41,12 @@ The installation of this add-on is pretty straightforward and not different in
 comparison to installing any other Hass.io add-on.
 
 1. **Ensure your Hass.io device has a [static IP and static external DNS servers!](https://github.com/home-assistant/hassos/blob/dev/Documentation/network.md#static-ip)**
-1. [Add our Hass.io add-ons repository][repository] to your Hass.io instance.
-1. Install the "AdGuard Home" add-on.
+1. Search for the "AdGuard Home" add-on in the Hass.io add-on store and install
+   it.
 1. Start the "AdGuard Home" add-on.
 1. Check the logs of the "AdGuard Home" to see if everything went well.
 1. Click the "OPEN WEB UI" button and log in with your Home Assistant account.
 1. Ready to go!
-
-**NOTE**: Do not add this repository to Hass.io, please use:
-`https://github.com/hassio-addons/repository`.
 
 ## Configuration
 
