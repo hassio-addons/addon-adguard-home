@@ -59,7 +59,7 @@ labels:
     description: "Marks an idea, which might be excepted and implemented."
   - name: "Incomplete"
     color: fef2c0
-    description: "Marks an PR or issue that is missing information."
+    description: "Marks a PR or issue that is missing information."
   - name: "Pull request"
     color: fbca04
     description: "There is an PR opened for this issue."
