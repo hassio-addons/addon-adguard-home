@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Community Hass.io Add-ons: AdGuard Home
+# Community Home Assistant Add-on: AdGuard Home
 # Handles configuration
 # ==============================================================================
 readonly CONFIG="/data/adguard/AdGuardHome.yaml"

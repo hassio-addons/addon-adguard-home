@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Community Hass.io Add-ons: AdGuard Home
+# Community Home Assistant Add-on: AdGuard Home
 # Sends discovery information to Home Assistant.
 # ==============================================================================
 declare config

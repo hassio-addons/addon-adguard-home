@@ -1,8 +1,8 @@
 ---
 repository:
-  description: "AdGuard Home - Community Hass.io Add-on for Home Assistant"
+  description: "AdGuard Home - Community Home Assistant Add-ons"
   homepage: https://addons.community
-  topics: adguard, dns, adblock, hassio-addons, hassio, hass, home-assistant
+  topics: adguard, dns, adblock, addon, addons, home-assistant, homeassistant
   private: false
   has_issues: true
   has_projects: false

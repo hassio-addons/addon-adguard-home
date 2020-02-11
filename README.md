@@ -1,4 +1,4 @@
-# Community Hass.io Add-ons: AdGuard Home
+# Community Home Assistant Add-on: AdGuard Home
 
 [![GitHub Release][releases-shield]][releases]
 ![Project Stage][project-stage-shield]
@@ -23,7 +23,7 @@
 
 Network-wide ads & trackers blocking DNS server.
 
-![The AdGuard Home Hass.io add-on](images/screenshot.png)
+![The AdGuard Home Home Assistant Add-on](images/screenshot.png)
 
 ## About
 
@@ -38,11 +38,14 @@ easily manage the filtering process and its settings.
 ## Installation
 
 The installation of this add-on is pretty straightforward and not different in
-comparison to installing any other Hass.io add-on.
+comparison to installing any other Home Assistant add-on.
 
-1. **Ensure your Hass.io device has a [static IP and static external DNS servers!](https://github.com/home-assistant/hassos/blob/dev/Documentation/network.md#static-ip)**
-1. Search for the "AdGuard Home" add-on in the Hass.io add-on store and install
-   it.
+1. **Ensure your Home Assistant device has a
+   [static IP and static external DNS servers!](https://github.com/home-assistant/hassos/blob/dev/Documentation/network.md#static-ip)**
+   This is important! You **WILL** end up having issues if you skip this step.
+   Also, please note, setting a fixed IP in your router is **NOT** static.
+1. Search for the "AdGuard Home" add-on in the Supervisor add-on store and
+   install it.
 1. Start the "AdGuard Home" add-on.
 1. Check the logs of the "AdGuard Home" to see if everything went well.
 1. Click the "OPEN WEB UI" button and log in with your Home Assistant account.
@@ -87,19 +90,19 @@ Enables/Disables SSL (HTTPS) on the add-on. Set it `true` to enable it,
 `false` otherwise.
 
 **Note**: _The SSL settings only apply to direct access and has no effect
-on the Hass.io Ingress service._
+on the Ingress service._
 
 ### Option: `certfile`
 
 The certificate file to use for SSL.
 
-**Note**: _The file MUST be stored in `/ssl/`, which is default for Hass.io_
+**Note**: _The file MUST be stored in `/ssl/`, which is the default_
 
 ### Option: `keyfile`
 
 The private key file to use for SSL.
 
-**Note**: _The file MUST be stored in `/ssl/`, which is default for Hass.io_
+**Note**: _The file MUST be stored in `/ssl/`, which is the default_
 
 ### Option: `leave_front_door_open`
 
@@ -129,7 +132,7 @@ Got questions?
 
 You have several options to get them answered:
 
-- The [Community Hass.io Add-ons Discord chat server][discord] for add-on
+- The [Community Home Assistant Add-ons Discord chat server][discord] for add-on
   support and feature requests.
 - The [Home Assistant Discord chat server][discord-ha] for general Home
   Assistant discussions and questions.
@@ -155,11 +158,11 @@ The original setup of this repository is by [Franck Nijhof][frenck].
 For a full list of all authors and contributors,
 check [the contributor's page][contributors].
 
-## We have got some Hass.io add-ons for you
+## We have got some Home Assistant add-ons for you
 
-Want some more functionality to your Hass.io Home Assistant instance?
+Want some more functionality to your Home Assistant instance?
 
-We have created multiple add-ons for Hass.io. For a full list, check out
+We have created multiple add-ons for Home Assistant. For a full list, check out
 our [GitHub Repository][repository].
 
 ## License
