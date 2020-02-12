@@ -1,6 +1,6 @@
 #!/usr/bin/execlineb -S0
 # ==============================================================================
-# Community Home Assistant Add-on: AdGuard Home
+# Home Assistant Community Add-on: AdGuard Home
 # Take down the S6 supervision tree when Nginx fails
 # ==============================================================================
 if { s6-test ${1} -ne 0 }

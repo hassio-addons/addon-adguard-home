@@ -1,6 +1,6 @@
 ---
 repository:
-  description: "AdGuard Home - Community Home Assistant Add-ons"
+  description: "AdGuard Home - Home Assistant Community Add-ons"
   homepage: https://addons.community
   topics: adguard, dns, adblock, addon, addons, home-assistant, homeassistant
   private: false

@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Community Home Assistant Add-on: AdGuard Home
+# Home Assistant Community Add-on: AdGuard Home
 # Configures NGINX for use with the AdGuard Home server
 # ==============================================================================
 declare admin_port
