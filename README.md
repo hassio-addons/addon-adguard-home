@@ -111,7 +111,7 @@ SOFTWARE.
 [discord-shield]: https://img.shields.io/discord/478094546522079232.svg
 [discord]: https://discord.me/hassioaddons
 [dockerhub]: https://hub.docker.com/r/hassioaddons/adguard
-[docs]: https://github.com/hassio-addons/addon-adguard-home/blob/master/adb/DOCS.md
+[docs]: https://github.com/hassio-addons/addon-adguard-home/blob/master/adguard/DOCS.md
 [forum-shield]: https://img.shields.io/badge/community-forum-brightgreen.svg
 [forum]: https://community.home-assistant.io/t/home-assistant-community-add-on-adguard-home/90684?u=frenck
 [frenck]: https://github.com/frenck
@@ -130,4 +130,3 @@ SOFTWARE.
 [releases-shield]: https://img.shields.io/github/release/hassio-addons/addon-adguard-home.svg
 [releases]: https://github.com/hassio-addons/addon-adguard-home/releases
 [repository]: https://github.com/hassio-addons/repository
-[semver]: http://semver.org/spec/v2.0.0.htm
