@@ -3,12 +3,22 @@
 # Home Assistant Community Add-on: AdGuard Home
 # Configures NGINX for use with the AdGuard Home server
 # ==============================================================================
+declare adguard_port=45158
+declare adguard_protocol=http
 declare admin_port
 declare certfile
 declare dns_host
 declare ingress_interface
 declare ingress_port
 declare keyfile
+
+if bashio::var.true "$(yq read /data/adguard/AdGuardHome.yaml tls.enabled)"; then
+    adguard_port=$(yq read /data/adguard/AdGuardHome.yaml tls.port_https)
+    adguard_protocol=https
+fi
+
+sed -i "s#%%port%%#${adguard_port}#g" /etc/nginx/includes/upstream.conf
+sed -i "s#%%protocol%%#${adguard_protocol}#g" /etc/nginx/servers/ingress.conf
 
 admin_port=$(bashio::addon.port 80)
 if bashio::var.has_value "${admin_port}"; then
@@ -27,6 +37,7 @@ if bashio::var.has_value "${admin_port}"; then
     fi
 
     sed -i "s/%%port%%/${admin_port}/g" /etc/nginx/servers/direct.conf
+    sed -i "s#%%protocol%%#${adguard_protocol}#g" /etc/nginx/servers/direct.conf
 fi
 
 ingress_port=$(bashio::addon.ingress_port)
