@@ -12,5 +12,9 @@ server {
         access_by_lua_file /etc/nginx/lua/ha-auth.lua;
         proxy_pass %%protocol%%://backend;
     }
+
+    location /dns-query {
+        proxy_pass %%protocol%%://backend;
     }
+
 }
