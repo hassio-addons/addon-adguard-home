@@ -14,11 +14,13 @@
   "init": false,
   "ports": {
     "53/udp": 53,
-    "80/tcp": null
+    "80/tcp": null,
+    "853/tcp": null
   },
   "ports_description": {
     "53/udp": "DNS server port",
-    "80/tcp": "Web interface (Not required for Ingress)"
+    "80/tcp": "Web interface (Not required for Ingress)",
+    "853/tcp": "DNS over TLS (optional)"
   },
   "discovery": ["adguard"],
   "boot": "auto",
