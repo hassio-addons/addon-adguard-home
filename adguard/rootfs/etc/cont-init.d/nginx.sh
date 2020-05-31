@@ -11,10 +11,15 @@ declare dns_host
 declare ingress_interface
 declare ingress_port
 declare keyfile
+declare tls_port
 
-if bashio::var.true "$(yq read /data/adguard/AdGuardHome.yaml tls.enabled)"; then
-    adguard_port=$(yq read /data/adguard/AdGuardHome.yaml tls.port_https)
-    adguard_protocol=https
+if bashio::var.true "$(yq read /data/adguard/AdGuardHome.yaml tls.enabled)";
+then
+    tls_port=$(yq read /data/adguard/AdGuardHome.yaml tls.port_https)
+    if bashio::var.has_value "${tls_port}" && [[ "${tls_port}" -ne 0 ]]; then
+        adguard_port="${tls_port}"
+        adguard_protocol=https
+    fi
 fi
 
 sed -i "s#%%port%%#${adguard_port}#g" /etc/nginx/includes/upstream.conf
