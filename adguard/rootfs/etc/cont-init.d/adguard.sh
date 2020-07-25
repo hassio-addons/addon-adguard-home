@@ -14,4 +14,4 @@ fi
 port=$(bashio::addon.port "53/udp")
 yq write --inplace "${CONFIG}" \
     'dns.port' "${port}" \
-    || hass.die 'Failed updating AdGuardHome DNS port'
+    || hass.exit.nok 'Failed updating AdGuardHome DNS port'
