@@ -12,24 +12,61 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Setup base
 # hadolint ignore=DL3003
 RUN \
-    apk add --no-cache \
+    VERSION="v0.103.3" \
+    \
+    && apk add --no-cache --virtual .build-dependencies \
+        nodejs=12.17.0-r0 \
+        npm=12.17.0-r0 \
+        build-base=0.5-r2 \
+        git=2.26.2-r0 \
+    \
+    && apk add --no-cache \
+        go@edge=1.14.6-r0 \
         lua-resty-http=0.15-r0 \
         nginx-mod-http-lua=1.18.0-r0 \
         nginx=1.18.0-r0 \
     \
-    && if [[ "${BUILD_ARCH}" = "aarch64" ]]; then ARCH="arm64"; fi \
-    && if [[ "${BUILD_ARCH}" = "amd64" ]]; then ARCH="amd64"; fi \
-    && if [[ "${BUILD_ARCH}" = "armhf" ]]; then ARCH="arm"; fi \
-    && if [[ "${BUILD_ARCH}" = "armv7" ]]; then ARCH="arm"; fi \
-    && if [[ "${BUILD_ARCH}" = "i386" ]]; then ARCH="386"; fi \
+    && git clone --branch "${VERSION}" --depth=1 \
+        "https://github.com/AdguardTeam/AdGuardHome" /tmp/adguard \
     \
-    && curl -L -s \
-        "https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.102.0/AdGuardHome_linux_${ARCH}.tar.gz" \
-        | tar zxvf - -C /opt/ \
-    && chmod a+x /opt/AdGuardHome/AdGuardHome \
+    && cd /tmp/adguard \
+    && npm --prefix client ci \
+    && npm --prefix client run build-prod \
+    \
+    && export \
+        CGO_ENABLED=0 \
+        COROOT_BOOTSTRAP="$(go env GOROOT)" \
+        GO111MODULE="on" \
+        GOARCH"$(go env GOARCH)" \
+        GOOS="$(go env GOOS)" \
+        GOPATH="$(go env GOPATH)" \
+        PATH="/usr/local/go/bin:$(go env GOPATH)/bin:$PATH" \
+        GOPROXY="https://goproxy.io" \
+    \
+    && if [[ "${BUILD_ARCH}" = "armhf" ]]; then export GOARM="6"; fi \
+    && if [[ "${BUILD_ARCH}" = "armv7" ]]; then export GOARM="7"; fi \
+    && if [[ "${BUILD_ARCH}" = "i386" ]]; then GO386="387"; fi \
+    \
+    && go mod download \
+    && go generate ./... \
+    && go build \
+        -ldflags="-s -w -X main.version=${VERSION#v} -X main.channel=release -X main.goarm=${GOARM}" \
+    \
+    && mkdir -p /opt/AdGuardHome \
+    && mv AdGuardHome /opt/AdGuardHome/AdGuardHome \
+    \
+    && apk del --no-cache --purge \
+        .build-dependencies \
+        go \
     \
     && rm -fr \
-        /etc/nginx
+        /etc/nginx \
+        /root/.cache \
+        /root/.config \
+        /root/.npm \
+        /root/go \
+        /tmp/* \
+        /usr/local/go
 
  # Copy root filesystem
 COPY rootfs /
