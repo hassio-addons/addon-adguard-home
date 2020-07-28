@@ -10,7 +10,7 @@ COPY bin/yq_${BUILD_ARCH} /usr/bin/yq
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Setup base
-# hadolint ignore=DL3003, SC2155
+# hadolint ignore=DL3003
 RUN \
     VERSION="v0.103.3" \
     \
@@ -45,7 +45,7 @@ RUN \
     \
     && if [[ "${BUILD_ARCH}" = "armhf" ]]; then export GOARM="6"; fi \
     && if [[ "${BUILD_ARCH}" = "armv7" ]]; then export GOARM="7"; fi \
-    && if [[ "${BUILD_ARCH}" = "i386" ]]; then export GO386="387"; fi \
+    && if [[ "${BUILD_ARCH}" = "i386" ]]; then GO386="387"; fi \
     \
     && go mod download \
     && go generate ./... \
