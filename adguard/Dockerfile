@@ -12,7 +12,10 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Setup base
 # hadolint ignore=DL3003
 RUN \
-    apk add --no-cache \
+    apk add --no-cache --virtual .build-dependencies \
+        gnupg=2.2.23-r0 \
+    \
+    && apk add --no-cache \
         lua-resty-http=0.15-r0 \
         nginx-mod-http-lua=1.18.0-r1 \
         nginx=1.18.0-r1 \
@@ -26,10 +29,24 @@ RUN \
     && curl -L -s \
         "https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.104.0/AdGuardHome_linux_${ARCH}.tar.gz" \
         | tar zxvf - -C /opt/ \
+    \
+    && export GNUPGHOME="$(mktemp -d)" \
+    && gpg \
+        --batch \
+        --keyserver pgp.key-server.io \
+        --recv-keys "58D6AD46BC509C6181A22C5F9A6F0EB91222CCA0" \
+    && gpg \
+        --batch \
+        --verify /opt/AdGuardHome/AdGuardHome.sig /opt/AdGuardHome/AdGuardHome \
+    && { command -v gpgconf > /dev/null && gpgconf --kill all || :; } \
+    \
     && chmod a+x /opt/AdGuardHome/AdGuardHome \
     \
+    && apk del --no-cache --purge .build-dependencies \
     && rm -fr \
-        /etc/nginx
+        "$GNUPGHOME" \
+        /etc/nginx \
+        /tmp/*
 
  # Copy root filesystem
 COPY rootfs /
