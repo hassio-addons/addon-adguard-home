@@ -14,8 +14,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN \
     apk add --no-cache \
         lua-resty-http=0.15-r0 \
-        nginx-mod-http-lua=1.18.0-r0 \
-        nginx=1.18.0-r0 \
+        nginx-mod-http-lua=1.18.0-r1 \
+        nginx=1.18.0-r1 \
     \
     && if [[ "${BUILD_ARCH}" = "aarch64" ]]; then ARCH="arm64"; fi \
     && if [[ "${BUILD_ARCH}" = "amd64" ]]; then ARCH="amd64"; fi \
