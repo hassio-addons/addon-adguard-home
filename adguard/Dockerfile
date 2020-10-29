@@ -10,7 +10,7 @@ COPY bin/yq_${BUILD_ARCH} /usr/bin/yq
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Setup base
-# hadolint ignore=DL3003
+# hadolint ignore=DL3003,SC2155
 RUN \
     apk add --no-cache --virtual .build-dependencies \
         gnupg=2.2.23-r0 \
