@@ -49,7 +49,7 @@ dealing with an unknown issue. Possible values are:
 - `debug`: Shows detailed debug information.
 - `info`: Normal (usually) interesting events.
 - `warning`: Exceptional occurrences that are not errors.
-- `error`:  Runtime errors that do not require immediate action.
+- `error`: Runtime errors that do not require immediate action.
 - `fatal`: Something went terribly wrong. Add-on becomes unusable.
 
 Please note that each level automatically includes log messages from a
@@ -89,8 +89,8 @@ only exposed to your internal network. USE AT YOUR OWN RISK!_
 
 Adguard allows the configuration of running DNS-over-HTTPS and DNS-over-
 TLS locally. If you configure these options please ensure to restart the
-addon afterwards.  Also to use DNS-over-HTTPS correctly please ensure to
-configure SSL on the addon as well as in Adguard itself.  Also consider
+addon afterwards. Also to use DNS-over-HTTPS correctly please ensure to
+configure SSL on the addon as well as in Adguard itself. Also consider
 that the addon and Adguard cannot use the same port for SSL.
 
 ## Changelog & Releases
@@ -100,12 +100,12 @@ functionality. The format of the log is based on
 [Keep a Changelog][keepchangelog].
 
 Releases are based on [Semantic Versioning][semver], and use the format
-of ``MAJOR.MINOR.PATCH``. In a nutshell, the version will be incremented
+of `MAJOR.MINOR.PATCH`. In a nutshell, the version will be incremented
 based on the following:
 
-- ``MAJOR``: Incompatible or major changes.
-- ``MINOR``: Backwards-compatible new features and enhancements.
-- ``PATCH``: Backwards-compatible bugfixes and package updates.
+- `MAJOR`: Incompatible or major changes.
+- `MINOR`: Backwards-compatible new features and enhancements.
+- `PATCH`: Backwards-compatible bugfixes and package updates.
 
 ## Support
 
