@@ -21,7 +21,6 @@
     "80/tcp": "Web interface (Not required for Ingress)"
   },
   "discovery": ["adguard"],
-  "hassio_api": true,
   "auth_api": true,
   "host_network": true,
   "map": ["ssl"],

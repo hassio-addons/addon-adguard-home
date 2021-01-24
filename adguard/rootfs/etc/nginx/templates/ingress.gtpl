@@ -1,5 +1,5 @@
 server {
-    listen %%interface%%:%%port%% default_server;
+    listen {{ .interface }}:{{ .port }} default_server;
 
     include /etc/nginx/includes/server_params.conf;
     include /etc/nginx/includes/proxy_params.conf;
@@ -8,6 +8,6 @@ server {
         allow   172.30.32.2;
         deny    all;
 
-        proxy_pass %%protocol%%://backend;
+        proxy_pass {{ .protocol }}://backend;
     }
 }

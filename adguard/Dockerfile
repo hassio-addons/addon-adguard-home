@@ -16,8 +16,6 @@ RUN \
         gnupg=2.2.27-r0 \
     \
     && apk add --no-cache \
-        lua-resty-http=0.15-r0 \
-        nginx-mod-http-lua=1.18.0-r13 \
         nginx=1.18.0-r13 \
     \
     && if [[ "${BUILD_ARCH}" = "aarch64" ]]; then ARCH="arm64"; fi \
