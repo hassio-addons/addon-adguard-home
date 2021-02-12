@@ -93,6 +93,15 @@ addon afterwards. Also to use DNS-over-HTTPS correctly please ensure to
 configure SSL on the addon as well as in Adguard itself. Also consider
 that the addon and Adguard cannot use the same port for SSL.
 
+To serve DNS-over-HTTPS locally, map port 853 in the addon configuration and enable in the AdGuard Settings:
+
+| Setting | Value |
+| :- | :- |
+| Set a certificates file path | `/ssl/fullchain.pem` |
+| Set a private key file | `/ssl/prifkey.pem` |
+| Enable Encryption | Enabled |
+| Redirect to HTTPS Automatically | Disabled |
+
 ## Changelog & Releases
 
 This repository keeps a change log using [GitHub's releases][releases]
