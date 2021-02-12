@@ -13,7 +13,8 @@
   "init": false,
   "ports": {
     "53/udp": 53,
-    "80/tcp": null
+    "80/tcp": null,
+    "853/tcp": null
   },
   "ports_description": {
     "53/udp": "DNS server port",
