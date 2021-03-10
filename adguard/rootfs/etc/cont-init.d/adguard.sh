@@ -19,5 +19,5 @@ yq write --inplace "${CONFIG}" \
 
 host=$(bashio::network.ipv4_address)
 yq write --inplace "${CONFIG}" \
-    'dns.bind_host' "${host}" \
+    'dns.bind_host' "${host%/*}" \
     || hass.exit.nok 'Failed updating AdGuardHome host'
