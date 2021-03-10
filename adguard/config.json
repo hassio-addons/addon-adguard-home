@@ -36,5 +36,6 @@
     "certfile": "str",
     "keyfile": "str",
     "leave_front_door_open": "bool?"
-  }
+  },
+  "snapshot_exclude": ["*/adguard/data/querylog.json"]
 }
