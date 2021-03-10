@@ -22,6 +22,8 @@
   "discovery": ["adguard"],
   "auth_api": true,
   "host_network": true,
+  "hassio_api": true,
+  "hassio_role": "manager",
   "map": ["ssl"],
   "options": {
     "ssl": true,
