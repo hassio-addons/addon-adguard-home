@@ -43,6 +43,7 @@ fi
 hosts+=($(bashio::network.ipv4_address))
 hosts+=($(bashio::network.ipv6_address))
 hosts+=($(bashio::addon.ip_address))
+yq delete --inplace "${CONFIG}" dns.bind_hosts
 for host in "${hosts[@]}"; do
     bashio::log.info "Adding ${host}"
     yq write --inplace "${CONFIG}" \
