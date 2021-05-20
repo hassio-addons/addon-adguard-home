@@ -43,6 +43,10 @@ if bashio::var.has_value "${schema_version+}"; then
         bashio::warning
         bashio::exit.ok
     fi
+else
+    # No idea what the schema is, might be an old config?
+    # Ensure dummy value exists so AdGuard doesn't kill itself during migration
+    yq write --inplace "${CONFIG}" dns.bind_host "127.0.0.1"
 fi
 
 # Collect IP addresses
