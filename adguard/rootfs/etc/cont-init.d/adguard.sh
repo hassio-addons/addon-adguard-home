@@ -8,6 +8,7 @@ readonly CONFIG="/data/adguard/AdGuardHome.yaml"
 declare port
 declare schema_version
 declare -a hosts
+declare addresses
 
 if ! bashio::fs.file_exists "${CONFIG}"; then
     mkdir -p /data/adguard
@@ -40,13 +41,24 @@ if bashio::var.has_value "${schema_version}"; then
     fi
 fi
 
-hosts+=($(bashio::network.ipv4_address))
-hosts+=($(bashio::network.ipv6_address))
+# Get IPv4 address
+addresses=$(bashio::network.ipv4_address)
+hosts+=("${addresses% *}")
+
+# Get IPv6 address
+addresses=$(bashio::network.ipv6_address)
+hosts+=("${addresses% *}")
+
+# Get "hassio" network interface
 hosts+=($(bashio::addon.ip_address))
+
+# Add interface to bind to, to AdGuard Home
 yq delete --inplace "${CONFIG}" dns.bind_hosts
 for host in "${hosts[@]}"; do
-    bashio::log.info "Adding ${host}"
-    yq write --inplace "${CONFIG}" \
-        dns.bind_hosts[+] "${host%/*}" \
-        || bashio::exit.nok 'Failed updating AdGuardHome host'
+    if bashio::var.has_value "${host}"; then
+        bashio::log.info "Adding ${host}"
+        yq write --inplace "${CONFIG}" \
+            dns.bind_hosts[+] "${host%/*}" \
+            || bashio::exit.nok 'Failed updating AdGuardHome host'
+    fi
 done
