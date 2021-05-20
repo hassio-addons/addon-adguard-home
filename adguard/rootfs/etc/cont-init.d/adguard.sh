@@ -25,15 +25,15 @@ yq write --inplace "${CONFIG}" \
 
 # Bump schema version in case this is an upgrade path
 schema_version=$(yq read "${CONFIG}" schema_version)
-if bashio::var.has_value "${schema_version}"; then
-    if [[ "${schema_version-0}" -eq 7 ]]; then
+if bashio::var.has_value "${schema_version+}"; then
+    if (( schema_version == 7 )); then
         # Clean up old interface bind formats
         yq delete --inplace "${CONFIG}" dns.bind_host
         yq write --inplace "${CONFIG}" schema_version 8
     fi
 
     # Warn if this is an upgrade from below schema version 7, skip further process
-    if [[ "${schema_version}" -lt 7 ]]; then
+    if (( schema_version < 7 )); then
         bashio::warning
         bashio::warning "AdGuard Home needs to update its configuration schema"
         bashio::warning "you might need to restart he add-on once more to complete"
