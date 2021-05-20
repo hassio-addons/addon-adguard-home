@@ -41,25 +41,42 @@ if bashio::var.has_value "${schema_version}"; then
     fi
 fi
 
-# Get IPv4 address
-addresses=$(bashio::network.ipv4_address)
-hosts+=("${addresses%/*}")
-
-# Get IPv6 address
-addresses=$(bashio::network.ipv6_address)
-hosts+=("${addresses%/*}")
-
-# Get "hassio" network interface
-addresses=$(bashio::addon.ip_address)
-hosts+=("${addresses%/*}")
+# Collect IP addresses
+hosts+=($(bashio::network.ipv4_address))
+hosts+=($(bashio::network.ipv6_address))
+hosts+=($(bashio::addon.ip_address))
 
 # Add interface to bind to, to AdGuard Home
 yq delete --inplace "${CONFIG}" dns.bind_hosts
 for host in "${hosts[@]}"; do
-    if bashio::var.has_value "${host}"; then
-        bashio::log.info "Adding ${host}"
-        yq write --inplace "${CONFIG}" \
-            dns.bind_hosts[+] "${host%/*}" \
-            || bashio::exit.nok 'Failed updating AdGuardHome host'
+    # Empty host value? Skip it
+    if ! bashio::var.has_value "${host}"; then
+        continue
     fi
+
+    if [[ "${host}" =~ .*:.* ]]; then
+      # IPv6
+      part="${host%%:*}"
+
+      # The decimal values for 0xfd & 0xa2
+      fd=$(( (0x$part) / 256 ))
+      a2=$(( (0x$part) % 256 ))
+
+      # fe80::/10 according to RFC 4193 -> Local link. Skip it
+      if (( (fd == 254) && ( (a2 & 192) == 128) )); then
+        continue
+      fi
+    else
+      # IPv4
+      part="${host%%.*}"
+
+      # 169.254.0.0/16 according to RFC 3927 -> Local link. Skip it
+      if (( part == 169 )); then
+        continue
+      fi
+    fi
+
+    yq write --inplace "${CONFIG}" \
+        dns.bind_hosts[+] "${host%/*}" \
+        || bashio::exit.nok 'Failed updating AdGuardHome host'
 done
