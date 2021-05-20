@@ -8,7 +8,9 @@ readonly CONFIG="/data/adguard/AdGuardHome.yaml"
 declare port
 declare schema_version
 declare -a hosts
-declare addresses
+declare part
+declare fd
+declare a2
 
 if ! bashio::fs.file_exists "${CONFIG}"; then
     mkdir -p /data/adguard
