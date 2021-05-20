@@ -43,14 +43,15 @@ fi
 
 # Get IPv4 address
 addresses=$(bashio::network.ipv4_address)
-hosts+=("${addresses% *}")
+hosts+=("${addresses%/*}")
 
 # Get IPv6 address
 addresses=$(bashio::network.ipv6_address)
-hosts+=("${addresses% *}")
+hosts+=("${addresses%/*}")
 
 # Get "hassio" network interface
-hosts+=($(bashio::addon.ip_address))
+addresses=$(bashio::addon.ip_address)
+hosts+=("${addresses%/*}")
 
 # Add interface to bind to, to AdGuard Home
 yq delete --inplace "${CONFIG}" dns.bind_hosts
