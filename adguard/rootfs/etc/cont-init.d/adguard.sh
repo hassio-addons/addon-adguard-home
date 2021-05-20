@@ -34,6 +34,8 @@ if bashio::var.has_value "${schema_version+}"; then
 
     # Warn if this is an upgrade from below schema version 7, skip further process
     if (( schema_version < 7 )); then
+        # Ensure dummy value exists so AdGuard doesn't kill itself during migration
+        yq write --inplace "${CONFIG}" dns.bind_host "127.0.0.1"
         bashio::warning
         bashio::warning "AdGuard Home needs to update its configuration schema"
         bashio::warning "you might need to restart he add-on once more to complete"
