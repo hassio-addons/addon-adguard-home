@@ -14,7 +14,7 @@ RUN \
         gnupg=2.2.27-r0 \
     \
     && apk add --no-cache \
-        nginx=1.18.0-r13 \
+        nginx=1.18.0-r14 \
         yq=3.4.1-r0 \
     \
     && if [[ "${BUILD_ARCH}" = "aarch64" ]]; then ARCH="arm64"; fi \
