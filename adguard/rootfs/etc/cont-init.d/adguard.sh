@@ -17,25 +17,24 @@ if ! bashio::fs.file_exists "${CONFIG}"; then
     cp /etc/adguard/AdGuardHome.yaml "${CONFIG}"
 fi
 
-port=$(bashio::addon.port "53/udp")
-yq write --inplace "${CONFIG}" \
-    dns.port "${port}" \
+port=$(bashio::addon.port "53/udp") \
+  yq e --inplace '.dns.port = env(port)' "${CONFIG}" \
     || bashio::exit.nok 'Failed updating AdGuardHome DNS port'
 
 
 # Bump schema version in case this is an upgrade path
-schema_version=$(yq read "${CONFIG}" schema_version)
+schema_version=$(yq e '.schema_version // ""' "${CONFIG}")
 if bashio::var.has_value "${schema_version+}"; then
     if (( schema_version == 7 )); then
         # Clean up old interface bind formats
-        yq delete --inplace "${CONFIG}" dns.bind_host
-        yq write --inplace "${CONFIG}" schema_version 8
+        yq --inplace e 'del(.dns.bind_host)' "${CONFIG}" 
+        yq --inplace e '.schema_version = 8' "${CONFIG}"
     fi
 
     # Warn if this is an upgrade from below schema version 7, skip further process
     if (( schema_version < 7 )); then
         # Ensure dummy value exists so AdGuard doesn't kill itself during migration
-        yq write --inplace "${CONFIG}" dns.bind_host "127.0.0.1"
+        yq --inplace e '.dns.bind_host = "127.0.0.1"' "${CONFIG}"
         bashio::warning
         bashio::warning "AdGuard Home needs to update its configuration schema"
         bashio::warning "you might need to restart he add-on once more to complete"
@@ -46,7 +45,7 @@ if bashio::var.has_value "${schema_version+}"; then
 else
     # No idea what the schema is, might be an old config?
     # Ensure dummy value exists so AdGuard doesn't kill itself during migration
-    yq write --inplace "${CONFIG}" dns.bind_host "127.0.0.1"
+    yq --inplace e '.dns.bind_host = "127.0.0.1"' "${CONFIG}"
 fi
 
 # Collect IP addresses
@@ -55,7 +54,7 @@ hosts+=($(bashio::network.ipv6_address))
 hosts+=($(bashio::addon.ip_address))
 
 # Add interface to bind to, to AdGuard Home
-yq delete --inplace "${CONFIG}" dns.bind_hosts
+yq --inplace e '.dns.bind_hosts = []' "${CONFIG}"
 for host in "${hosts[@]}"; do
     # Empty host value? Skip it
     if ! bashio::var.has_value "${host}"; then
@@ -84,7 +83,7 @@ for host in "${hosts[@]}"; do
       fi
     fi
 
-    yq write --inplace "${CONFIG}" \
-        dns.bind_hosts[+] "${host%/*}" \
+    host="${host}" yq --inplace e \
+      '.dns.bind_hosts += [env(host)]' "${CONFIG}" \
         || bashio::exit.nok 'Failed updating AdGuardHome host'
 done
