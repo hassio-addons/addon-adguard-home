@@ -6,6 +6,7 @@
   "url": "https://github.com/hassio-addons/addon-adguard-home",
   "ingress": true,
   "ingress_port": 0,
+  "ingress_stream": true,
   "panel_icon": "mdi:shield-check",
   "startup": "services",
   "homeassistant": "0.113.2",
