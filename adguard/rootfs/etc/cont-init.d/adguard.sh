@@ -5,7 +5,6 @@
 # Handles configuration
 # ==============================================================================
 readonly CONFIG="/data/adguard/AdGuardHome.yaml"
-declare port
 declare schema_version
 declare -a hosts
 declare part
