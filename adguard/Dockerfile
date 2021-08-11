@@ -10,10 +10,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Setup base
 # hadolint ignore=DL3003,SC2155
 RUN \
-    apk add --no-cache --virtual .build-dependencies \
-        gnupg=2.2.27-r0 \
-    \
-    && apk add --no-cache \
+    apk add --no-cache \
         nginx=1.20.1-r3 \
         yq=4.6.3-r1 \
     \
@@ -27,21 +24,9 @@ RUN \
         "https://github.com/AdguardTeam/AdGuardHome/releases/download/v0.106.3/AdGuardHome_linux_${ARCH}.tar.gz" \
         | tar zxvf - -C /opt/ \
     \
-    && export GNUPGHOME="$(mktemp -d)" \
-    && gpg \
-        --batch \
-        --keyserver pgp.key-server.io \
-        --recv-keys "58D6AD46BC509C6181A22C5F9A6F0EB91222CCA0" \
-    && gpg \
-        --batch \
-        --verify /opt/AdGuardHome/AdGuardHome.sig /opt/AdGuardHome/AdGuardHome \
-    && { command -v gpgconf > /dev/null && gpgconf --kill all || :; } \
-    \
     && chmod a+x /opt/AdGuardHome/AdGuardHome \
     \
-    && apk del --no-cache --purge .build-dependencies \
     && rm -fr \
-        "$GNUPGHOME" \
         /etc/nginx \
         /tmp/*
 
