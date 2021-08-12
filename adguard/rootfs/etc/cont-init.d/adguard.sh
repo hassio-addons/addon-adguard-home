@@ -82,7 +82,7 @@ for host in "${hosts[@]}"; do
       fi
     fi
 
-    host="${host}" yq --inplace e \
+    host="${host%/*}" yq --inplace e \
       '.dns.bind_hosts += [env(host)]' "${CONFIG}" \
         || bashio::exit.nok 'Failed updating AdGuardHome host'
 done
