@@ -8,9 +8,9 @@ declare adguard_protocol=http
 declare tls_port
 
 # Figure out port settings from AdGuard
-if bashio::var.true "$(yq read /data/adguard/AdGuardHome.yaml tls.enabled)";
+if bashio::var.true "$(yq e '.tls.enabled' /data/adguard/AdGuardHome.yaml)";
 then
-    tls_port=$(yq read /data/adguard/AdGuardHome.yaml tls.port_https)
+    tls_port=$(yq e '.tls.port_https // ""' /data/adguard/AdGuardHome.yaml)
     if bashio::var.has_value "${tls_port}" && [[ "${tls_port}" -ne 0 ]]; then
         adguard_port="${tls_port}"
         adguard_protocol=https
