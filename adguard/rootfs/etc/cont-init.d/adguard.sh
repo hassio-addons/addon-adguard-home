@@ -6,6 +6,7 @@
 # ==============================================================================
 readonly CONFIG="/data/adguard/AdGuardHome.yaml"
 declare schema_version
+declare -a interfaces
 declare -a hosts
 declare part
 declare fd
@@ -48,8 +49,11 @@ else
 fi
 
 # Collect IP addresses
-hosts+=($(bashio::network.ipv4_address))
-hosts+=($(bashio::network.ipv6_address))
+interfaces+=($(bashio::network.interfaces))
+for interface in "${interfaces[@]}"; do
+    hosts+=($(bashio::network.ipv4_address ${interface}))
+    hosts+=($(bashio::network.ipv6_address ${interface}))
+done
 hosts+=($(bashio::addon.ip_address))
 
 # Add interface to bind to, to AdGuard Home
