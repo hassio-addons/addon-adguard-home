@@ -14,11 +14,17 @@
   "init": false,
   "ports": {
     "53/udp": 53,
-    "80/tcp": null
+    "80/tcp": null,
+    "443/tcp": null,
+    "853/tcp": 853,
+    "784/tcp": 784
   },
   "ports_description": {
     "53/udp": "DNS server port",
-    "80/tcp": "Web interface (Not required for Ingress)"
+    "80/tcp": "Web interface (Not required for Ingress)",
+    "443/tcp": "Web interface (Not required for Ingress)",
+    "853/tcp": "DNS-over-TLS",
+    "784/tcp": "DNS-over-QUIC"
   },
   "discovery": ["adguard"],
   "auth_api": true,
