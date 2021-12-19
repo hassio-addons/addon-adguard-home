@@ -51,8 +51,8 @@ fi
 # Collect IP addresses
 interfaces+=($(bashio::network.interfaces))
 for interface in "${interfaces[@]}"; do
-    hosts+=($(bashio::network.ipv4_address ${interface}))
-    hosts+=($(bashio::network.ipv6_address ${interface}))
+    hosts+=($(bashio::network.ipv4_address "${interface}"))
+    hosts+=($(bashio::network.ipv6_address "${interface}"))
 done
 hosts+=($(bashio::addon.ip_address))
 
