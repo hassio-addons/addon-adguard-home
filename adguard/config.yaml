@@ -42,4 +42,4 @@ schema:
   keyfile: str
   leave_front_door_open: bool?
 backup_exclude:
-  - "*/adguard/data/querylog.json"
+  - "*/adguard/data/querylog.*"
