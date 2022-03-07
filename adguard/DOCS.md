@@ -31,6 +31,12 @@ comparison to installing any other Home Assistant add-on.
 1. Click the "OPEN WEB UI" button and log in with your Home Assistant account.
 1. Ready to go!
 
+Home Assistant, by default, ships with the Community Add-ons store installed.
+However, if it is missing (for any reason), you can add it by clicking the
+button My button below.
+
+[!Add repository to your Home Assitant instance.][repository-badge]][repository]
+
 ## Configuration
 
 **Note**: _Remember to restart the add-on when the configuration is changed._
