@@ -30,6 +30,7 @@ comparison to installing any other Home Assistant add-on.
 1. Check the logs of the "AdGuard Home" to see if everything went well.
 1. Click the "OPEN WEB UI" button and log in with your Home Assistant account.
 1. Ready to go!
+2. OPTIONAL: Easiest way to check if everything is working properly run following in your console: `dig google.com @YOUR_ADGUARD_IP`
 
 ## Configuration
 
