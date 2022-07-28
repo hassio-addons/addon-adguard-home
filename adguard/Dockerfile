@@ -33,6 +33,9 @@ RUN \
  # Copy root filesystem
 COPY rootfs /
 
+# Health check
+HEALTHCHECK CMD curl --fail http://127.0.0.1:45158 || exit 1
+
 # Build arguments
 ARG BUILD_ARCH
 ARG BUILD_DATE
