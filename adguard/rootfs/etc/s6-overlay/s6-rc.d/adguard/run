@@ -1,4 +1,5 @@
 #!/command/with-contenv bashio
+# shellcheck shell=bash
 # ==============================================================================
 # Home Assistant Community Add-on: AdGuard Home
 # Runs the AdGuard Home server
@@ -13,7 +14,7 @@ options+=(--work-dir /data/adguard)
 options+=(--no-check-update)
 
 if bashio::debug; then
-    option+=(--verbose)
+  option+=(--verbose)
 fi
 
 # RUN AdGuard Home server

@@ -1,9 +1,13 @@
 #!/command/with-contenv bashio
+# shellcheck shell=bash
 # ==============================================================================
 # Home Assistant Community Add-on: AdGuard Home
 # Sends discovery information to Home Assistant.
 # ==============================================================================
 declare config
+
+# Wait for AdGuard Home to become available
+bashio::net.wait_for 45158 127.0.0.1 300
 
 config=$(\
     bashio::var.json \
