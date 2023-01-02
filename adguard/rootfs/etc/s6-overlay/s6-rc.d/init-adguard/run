@@ -28,7 +28,7 @@ schema_version=$(yq e '.schema_version // ""' "${CONFIG}")
 if bashio::var.has_value "${schema_version+}"; then
     if (( schema_version == 7 )); then
         # Clean up old interface bind formats
-        yq --inplace e 'del(.dns.bind_host)' "${CONFIG}" 
+        yq --inplace e 'del(.dns.bind_host)' "${CONFIG}"
         yq --inplace e '.schema_version = 8' "${CONFIG}"
     fi
 
@@ -56,6 +56,9 @@ for interface in "${interfaces[@]}"; do
     hosts+=($(bashio::network.ipv6_address "${interface}"))
 done
 hosts+=($(bashio::addon.ip_address))
+# Bind to localhost ip addresses as well.
+hosts+=("127.0.0.1")
+hosts+=("::1")
 
 # Add interface to bind to, to AdGuard Home
 yq --inplace e '.dns.bind_hosts = []' "${CONFIG}"
