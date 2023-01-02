@@ -93,10 +93,6 @@ authentication on the AdGuard Home by setting it to `true`.
 **Note**: _We STRONGLY suggest, not to use this, even if this add-on is
 only exposed to your internal network. USE AT YOUR OWN RISK!_
 
-### Option: `bind_localhost`
-
-Enable this option to force Adguard to bind to `127.0.0.1` and `::1`.
-
 ## Encryption Settings (Advanced Usage)
 
 Adguard allows the configuration of running DNS-over-HTTPS and DNS-over-
@@ -104,16 +100,6 @@ TLS locally. If you configure these options please ensure to restart the
 addon afterwards. Also to use DNS-over-HTTPS correctly please ensure to
 configure SSL on the addon as well as in Adguard itself. Also consider
 that the addon and Adguard cannot use the same port for SSL.
-
-## Bind localhost setting (Advanced Usage)
-
-This setting can be used if you have services that need to access the
-DNS port internally. A good example of that is the [Tailscale addon](https://github.com/hassio-addons/addon-tailscale).
-Once enabled, you can then make DNS queries using `dig example.org 
-@tailscaleIp`.
-
-**Note**: _This is an example use case and no specific support will be given for 
-Tailscale when using this addon_.
 
 ## Changelog & Releases
 

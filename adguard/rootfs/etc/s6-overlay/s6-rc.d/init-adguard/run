@@ -56,11 +56,9 @@ for interface in "${interfaces[@]}"; do
     hosts+=($(bashio::network.ipv6_address "${interface}"))
 done
 hosts+=($(bashio::addon.ip_address))
-
-if bashio::config.true 'bind_localhost' ; then
-    hosts+=("127.0.0.1")
-    hosts+=("::1")
-fi
+# Bind to localhost ip addresses as well.
+hosts+=("127.0.0.1")
+hosts+=("::1")
 
 # Add interface to bind to, to AdGuard Home
 yq --inplace e '.dns.bind_hosts = []' "${CONFIG}"
