@@ -8,7 +8,7 @@ ARG BUILD_ARCH=amd64
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Setup base
-ARG ADGUARD_HOME_VERSION="v0.107.36"
+ARG ADGUARD_HOME_VERSION="v0.107.37"
 # hadolint ignore=DL3003,SC2155
 RUN \
     apk add --no-cache \
