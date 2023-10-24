@@ -1,3 +1,7 @@
 dns:
   port: 53
   bootstrap_dns: 1.1.1.1:53
+  trusted_proxies:
+    - 127.0.0.0/8
+    - ::1/128
+    - 172.30.33.0/24
