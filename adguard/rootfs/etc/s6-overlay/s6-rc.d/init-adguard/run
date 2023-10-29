@@ -9,8 +9,6 @@ readonly CONFIG="/data/adguard/AdGuardHome.yaml"
 declare schema_version
 declare -a interfaces
 declare -a hosts
-declare -a hosts_v4
-declare -a hosts_v6
 declare part
 declare fd
 declare a2
@@ -54,13 +52,15 @@ fi
 # Collect IP addresses from interfaces
 interfaces+=($(bashio::network.interfaces))
 for interface in "${interfaces[@]}"; do
-    hosts_v4+=($(bashio::network.ipv4_address "${interface}"))
-    hosts_v6+=($(bashio::network.ipv6_address "${interface}"))
-    # Remove the netmask (for example /24) from the address
-    for host in "${hosts_v4[@]}"; do
+
+    # IPv4 addresses on the interface
+    for host in $(bashio::network.ipv4_address "${interface}"); do
+        # Remove the netmask (for example /24) from the address
         hosts+=("${host%/*}")
     done
-    for host in "${hosts_v6[@]}"; do
+
+    # IPv6 addresses on the interface
+    for host in $(bashio::network.ipv6_address "${interface}"); do
         part="${host%%:*}"
         # The decimal values for 0xfd & 0xa2
         fd=$(( (0x$part) / 256 ))
@@ -73,6 +73,7 @@ for interface in "${interfaces[@]}"; do
             hosts+=("${host%/*}")
         fi
     done
+
 done
 # Bind to addon ip address
 hosts+=($(bashio::addon.ip_address))
