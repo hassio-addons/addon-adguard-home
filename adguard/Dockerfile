@@ -13,7 +13,7 @@ ARG ADGUARD_HOME_VERSION="v0.107.47"
 RUN \
     apk add --no-cache \
         nginx=1.24.0-r15 \
-        yq=4.35.2-r2 \
+        yq=4.35.2-r3 \
     \
     && if [[ "${BUILD_ARCH}" = "aarch64" ]]; then ARCH="arm64"; fi \
     && if [[ "${BUILD_ARCH}" = "amd64" ]]; then ARCH="amd64"; fi \
