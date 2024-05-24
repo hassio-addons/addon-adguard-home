@@ -75,7 +75,7 @@ for interface in "${interfaces[@]}"; do
     done
 
 done
-# Bind to addon ip address
+# Bind to addon IP address
 hosts+=($(bashio::addon.ip_address))
 # Bind to localhost ip addresses as well.
 hosts+=("127.0.0.1")
