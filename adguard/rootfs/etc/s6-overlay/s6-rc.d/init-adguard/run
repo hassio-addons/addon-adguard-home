@@ -49,12 +49,33 @@ else
     yq --inplace e '.dns.bind_host = "127.0.0.1"' "${CONFIG}"
 fi
 
-# Collect IP addresses
+# Collect IP addresses from interfaces
 interfaces+=($(bashio::network.interfaces))
 for interface in "${interfaces[@]}"; do
-    hosts+=($(bashio::network.ipv4_address "${interface}"))
-    hosts+=($(bashio::network.ipv6_address "${interface}"))
+
+    # IPv4 addresses on the interface
+    for host in $(bashio::network.ipv4_address "${interface}"); do
+        # Remove the netmask (for example /24) from the address
+        hosts+=("${host%/*}")
+    done
+
+    # IPv6 addresses on the interface
+    for host in $(bashio::network.ipv6_address "${interface}"); do
+        part="${host%%:*}"
+        # The decimal values for 0xfd & 0xa2
+        fd=$(( (0x$part) / 256 ))
+        a2=$(( (0x$part) % 256 ))
+        # fe80::/10 according to RFC 4193 -> Local link. Add interface to bind to
+        if (( (fd == 254) && ( (a2 & 192) == 128) )); then
+            hosts+=("${host%/*}%${interface}")
+        else
+            # Remove the netmask (for example /64) from the address
+            hosts+=("${host%/*}")
+        fi
+    done
+
 done
+# Bind to addon IP address
 hosts+=($(bashio::addon.ip_address))
 # Bind to localhost ip addresses as well.
 hosts+=("127.0.0.1")
@@ -68,19 +89,8 @@ for host in "${hosts[@]}"; do
         continue
     fi
 
-    if [[ "${host}" =~ .*:.* ]]; then
-      # IPv6
-      part="${host%%:*}"
+    if [[ "${host}" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
 
-      # The decimal values for 0xfd & 0xa2
-      fd=$(( (0x$part) / 256 ))
-      a2=$(( (0x$part) % 256 ))
-
-      # fe80::/10 according to RFC 4193 -> Local link. Skip it
-      if (( (fd == 254) && ( (a2 & 192) == 128) )); then
-        continue
-      fi
-    else
       # IPv4
       part="${host%%.*}"
 
@@ -90,7 +100,7 @@ for host in "${hosts[@]}"; do
       fi
     fi
 
-    host="${host%/*}" yq --inplace e \
+    host="${host}" yq --inplace e \
       '.dns.bind_hosts += [env(host)]' "${CONFIG}" \
         || bashio::exit.nok 'Failed updating AdGuardHome host'
 done
