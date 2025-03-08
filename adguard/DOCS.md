@@ -30,6 +30,7 @@ comparison to installing any other Home Assistant add-on.
 1. Start the "AdGuard Home" add-on.
 1. Check the logs of the "AdGuard Home" to see if everything went well.
 1. Click the "OPEN WEB UI" button and log in with your Home Assistant account.
+1. If you have set your router to use the IP address of your Home Assistant as its DNS, you need to add the router's IP address as a client in AdGuard's settings under _Settings → Client settings_.
 1. Ready to go!
 
 ## Configuration
