@@ -10,6 +10,7 @@ bashio::log.info "Starting AdGuard Home server..."
 
 options+=(--port 45158)
 options+=(--host 127.0.0.1)
+options+=(--config /config/AdGuardHome.yaml)
 options+=(--work-dir /data/adguard)
 options+=(--no-check-update)
 
