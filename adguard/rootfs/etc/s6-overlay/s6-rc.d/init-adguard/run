@@ -14,7 +14,7 @@ declare fd
 declare a2
 
 if ! bashio::fs.file_exists "${CONFIG}"; then
-    mkdir -p /data/adguard
+    mkdir -p /config /data/adguard
     cp /etc/adguard/AdGuardHome.yaml "${CONFIG}"
 fi
 
