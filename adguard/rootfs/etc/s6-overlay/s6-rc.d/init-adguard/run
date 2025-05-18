@@ -19,7 +19,7 @@ if bashio::fs.file_exists "${OLD_CONFIG}"; then
 fi
 
 if ! bashio::fs.file_exists "${CONFIG}"; then
-    mkdir -p /config
+    mkdir -p /config /data/adguard
     cp /etc/adguard/AdGuardHome.yaml "${CONFIG}"
 fi
 
