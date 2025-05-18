@@ -5,13 +5,18 @@
 # Home Assistant Community Add-on: AdGuard Home
 # Handles configuration
 # ==============================================================================
-readonly CONFIG="/data/adguard/AdGuardHome.yaml"
+readonly OLD_CONFIG="/data/adguard/AdGuardHome.yaml"
+readonly CONFIG="/config/AdGuardHome.yaml"
 declare schema_version
 declare -a interfaces
 declare -a hosts
 declare part
 declare fd
 declare a2
+
+if bashio::fs.file_exists "${OLD_CONFIG}"; then
+    mv "${OLD_CONFIG}" "${CONFIG}"
+fi
 
 if ! bashio::fs.file_exists "${CONFIG}"; then
     mkdir -p /config /data/adguard
