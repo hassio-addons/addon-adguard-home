@@ -12,6 +12,7 @@ options+=(--port 45158)
 options+=(--host 127.0.0.1)
 options+=(--work-dir /data/adguard)
 options+=(--no-check-update)
+options+=(--config /config/AdGuardHome.yaml)
 
 if bashio::debug; then
   option+=(--verbose)
