@@ -19,9 +19,17 @@ init: false
 ports:
   53/udp: 53
   80/tcp: null
+  443/tcp: null
+  784/tcp: null
+  853/tcp: null
+  2443/tcp: null
 ports_description:
   53/udp: DNS server port
   80/tcp: Web interface (Not required for Ingress)
+  443/tcp: Web interface (Not required for Ingress)
+  784/tcp: DNS-over-QUIC
+  853/tcp: DNS-over-TLS
+  2443/tcp: DNS-over-HTTPS
 discovery:
   - adguard
 auth_api: true
