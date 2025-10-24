@@ -17,7 +17,6 @@ RUN \
     \
     && if [[ "${BUILD_ARCH}" = "aarch64" ]]; then ARCH="arm64"; fi \
     && if [[ "${BUILD_ARCH}" = "amd64" ]]; then ARCH="amd64"; fi \
-    && if [[ "${BUILD_ARCH}" = "armv7" ]]; then ARCH="armv7"; fi \
     \
     && curl -L -s \
         "https://github.com/AdguardTeam/AdGuardHome/releases/download/${ADGUARD_HOME_VERSION}/AdGuardHome_linux_${ARCH}.tar.gz" \
